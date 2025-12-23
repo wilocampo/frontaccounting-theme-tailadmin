@@ -144,7 +144,8 @@
 									500: '#465fff',
 									600: '#3641f5',
 									700: '#2a31d8'
-								}
+								},
+								'gray-dark': '#1f2937'
 							},
 							fontFamily: {
 								outfit: ['Outfit', 'sans-serif']
@@ -179,11 +180,11 @@
 						}
 					});
 				}
-			}\" class=\"min-h-screen bg-gray-50 dark:bg-gray-900\">\n";
+			}\" class=\"min-h-screen bg-gray-50 dark:bg-[#101828]\">\n";
 			
 			// Preloader - hidden by default with x-cloak, shown only when loading
 			echo "<!-- ===== Preloader Start ===== -->\n";
-			echo "<div x-cloak x-show=\"!loaded\" class=\"fixed inset-0 z-99999 flex items-center justify-center bg-white dark:bg-gray-900\">\n";
+			echo "<div x-cloak x-show=\"!loaded\" class=\"fixed inset-0 z-99999 flex items-center justify-center bg-white dark:bg-[#101828]\">\n";
 			echo "<div class=\"h-16 w-16 animate-spin rounded-full border-4 border-gray-200 border-t-brand-500\"></div>\n";
 			echo "</div>\n";
 			echo "<!-- ===== Preloader End ===== -->\n";
@@ -203,7 +204,7 @@
 						'-translate-x-full': !sidebarToggle,
 						'xl:w-[90px]': sidebarToggle
 					}\" 
-					class=\"sidebar fixed left-0 top-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-hidden border-r border-gray-200 bg-white px-5 dark:border-gray-800 dark:bg-gray-900 xl:static xl:translate-x-0 transition-all duration-300 ease-in-out\">\n";
+					class=\"sidebar fixed left-0 top-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-hidden border-r border-gray-200 bg-white px-5 dark:border-[#1d2939] dark:bg-[#1d2939] xl:static xl:translate-x-0 transition-all duration-300 ease-in-out\">\n";
 				
 				// SIDEBAR HEADER
 				echo "<div class=\"flex items-center gap-2 pt-8 sidebar-header pb-7\" :class=\"sidebarToggle ? 'justify-center' : 'justify-between'\">\n";
@@ -411,12 +412,12 @@
 				echo "<div x-show=\"sidebarToggle\" @click=\"sidebarToggle = false\" x-transition:enter=\"transition-opacity ease-linear duration-300\" x-transition:enter-start=\"opacity-0\" x-transition:enter-end=\"opacity-100\" x-transition:leave=\"transition-opacity ease-linear duration-300\" x-transition:leave-start=\"opacity-100\" x-transition:leave-end=\"opacity-0\" class=\"fixed inset-0 z-9998 bg-black/50 xl:hidden\"></div>\n";
 				
 				// ===== Header Start =====
-				echo "<header class=\"sticky top-0 z-99999 flex w-full border-gray-200 bg-white xl:border-b dark:border-gray-800 dark:bg-gray-900\">\n";
+				echo "<header class=\"sticky top-0 z-99999 flex w-full border-gray-200 bg-white xl:border-b dark:border-[#1d2939] dark:bg-[#1d2939]\">\n";
 				echo "<div class=\"flex grow flex-col items-center justify-between xl:flex-row xl:px-6\">\n";
-				echo "<div class=\"flex w-full items-center justify-between gap-2 border-b border-gray-200 px-3 py-3 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 lg:py-4 dark:border-gray-800\">\n";
+				echo "<div class=\"flex w-full items-center justify-between gap-2 border-b border-gray-200 px-3 py-3 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 lg:py-4 dark:border-[#1d2939]\">\n";
 				
 				// Hamburger Toggle BTN
-				echo "<button :class=\"sidebarToggle ? 'xl:bg-transparent dark:xl:bg-transparent bg-gray-100 dark:bg-gray-800' : ''\" class=\"z-99999 flex h-10 w-10 items-center justify-center rounded-lg border-gray-200 text-gray-500 xl:h-11 xl:w-11 xl:border dark:border-gray-800 dark:text-gray-400\" @click.stop=\"sidebarToggle = !sidebarToggle\">\n";
+				echo "<button :class=\"sidebarToggle ? 'xl:bg-transparent dark:xl:bg-transparent bg-gray-100 dark:bg-gray-800' : ''\" class=\"z-99999 flex h-10 w-10 items-center justify-center rounded-lg border-gray-200 text-gray-500 xl:h-11 xl:w-11 xl:border dark:border-gray-700 dark:text-gray-400\" @click.stop=\"sidebarToggle = !sidebarToggle\">\n";
 				echo "<svg class=\"hidden fill-current xl:block\" width=\"16\" height=\"12\" viewBox=\"0 0 16 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n";
 				echo "<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.583252 1C0.583252 0.585788 0.919038 0.25 1.33325 0.25H14.6666C15.0808 0.25 15.4166 0.585786 15.4166 1C15.4166 1.41421 15.0808 1.75 14.6666 1.75L1.33325 1.75C0.919038 1.75 0.583252 1.41422 0.583252 1ZM0.583252 11C0.583252 10.5858 0.919038 10.25 1.33325 10.25L14.6666 10.25C15.0808 10.25 15.4166 10.5858 15.4166 11C15.4166 11.4142 15.0808 11.75 14.6666 11.75L1.33325 11.75C0.919038 11.75 0.583252 11.4142 0.583252 11ZM1.33325 5.25C0.919038 5.25 0.583252 5.58579 0.583252 6C0.583252 6.41421 0.919038 6.75 1.33325 6.75L7.99992 6.75C8.41413 6.75 8.74992 6.41421 8.74992 6C8.74992 5.58579 8.41413 5.25 7.99992 5.25L1.33325 5.25Z\" fill=\"\"></path>\n";
 				echo "</svg>\n";
@@ -449,7 +450,7 @@
 				echo "<div class=\"2xsm:gap-3 flex items-center gap-2\">\n";
 				
 				// Dark Mode Toggler
-				echo "<button class=\"hover:text-dark-900 relative flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white\" @click.prevent=\"darkMode = !darkMode\">\n";
+				echo "<button class=\"hover:text-dark-900 relative flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white\" @click.prevent=\"darkMode = !darkMode\">\n";
 				echo "<svg class=\"hidden dark:block\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n";
 				echo "<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M9.99998 1.5415C10.4142 1.5415 10.75 1.87729 10.75 2.2915V3.5415C10.75 3.95572 10.4142 4.2915 9.99998 4.2915C9.58577 4.2915 9.24998 3.95572 9.24998 3.5415V2.2915C9.24998 1.87729 9.58577 1.5415 9.99998 1.5415ZM10.0009 6.79327C8.22978 6.79327 6.79402 8.22904 6.79402 10.0001C6.79402 11.7712 8.22978 13.207 10.0009 13.207C11.772 13.207 13.2078 11.7712 13.2078 10.0001C13.2078 8.22904 11.772 6.79327 10.0009 6.79327ZM5.29402 10.0001C5.29402 7.40061 7.40135 5.29327 10.0009 5.29327C12.6004 5.29327 14.7078 7.40061 14.7078 10.0001C14.7078 12.5997 12.6004 14.707 10.0009 14.707C7.40135 14.707 5.29402 12.5997 5.29402 10.0001ZM15.9813 5.08035C16.2742 4.78746 16.2742 4.31258 15.9813 4.01969C15.6884 3.7268 15.2135 3.7268 14.9207 4.01969L14.0368 4.90357C13.7439 5.19647 13.7439 5.67134 14.0368 5.96423C14.3297 6.25713 14.8045 6.25713 15.0974 5.96423L15.9813 5.08035ZM18.4577 10.0001C18.4577 10.4143 18.1219 10.7501 17.7077 10.7501H16.4577C16.0435 10.7501 15.7077 10.4143 15.7077 10.0001C15.7077 9.58592 16.0435 9.25013 16.4577 9.25013H17.7077C18.1219 9.25013 18.4577 9.58592 18.4577 10.0001ZM14.9207 15.9806C15.2135 16.2735 15.6884 16.2735 15.9813 15.9806C16.2742 15.6877 16.2742 15.2128 15.9813 14.9199L15.0974 14.036C14.8045 13.7431 14.3297 13.7431 14.0368 14.036C13.7439 14.3289 13.7439 14.8038 14.0368 15.0967L14.9207 15.9806ZM9.99998 15.7088C10.4142 15.7088 10.75 16.0445 10.75 16.4588V17.7088C10.75 18.123 10.4142 18.4588 9.99998 18.4588C9.58577 18.4588 9.24998 18.123 9.24998 17.7088V16.4588C9.24998 16.0445 9.58577 15.7088 9.99998 15.7088ZM5.96356 15.0972C6.25646 14.8043 6.25646 14.3295 5.96356 14.0366C5.67067 13.7437 5.1958 13.7437 4.9029 14.0366L4.01902 14.9204C3.72613 15.2133 3.72613 15.6882 4.01902 15.9811C4.31191 16.274 4.78679 16.274 5.07968 15.9811L5.96356 15.0972ZM4.29224 10.0001C4.29224 10.4143 3.95645 10.7501 3.54224 10.7501H2.29224C1.87802 10.7501 1.54224 10.4143 1.54224 10.0001C1.54224 9.58592 1.87802 9.25013 2.29224 9.25013H3.54224C3.95645 9.25013 4.29224 9.58592 4.29224 10.0001ZM4.9029 5.9637C5.1958 6.25659 5.67067 6.25659 5.96356 5.9637C6.25646 5.6708 6.25646 5.19593 5.96356 4.90303L5.07968 4.01915C4.78679 3.72626 4.31191 3.72626 4.01902 4.01915C3.72613 4.31204 3.72613 4.78692 4.01902 5.07981L4.9029 5.9637Z\" fill=\"currentColor\"></path>\n";
 				echo "</svg>\n";
@@ -474,12 +475,12 @@
 				echo "</a>\n";
 				
 				// User Dropdown
-				echo "<div x-show=\"userDropdownOpen\" x-cloak x-transition:enter=\"transition ease-out duration-100\" x-transition:enter-start=\"opacity-0 scale-95\" x-transition:enter-end=\"opacity-100 scale-100\" x-transition:leave=\"transition ease-in duration-75\" x-transition:leave-start=\"opacity-100 scale-100\" x-transition:leave-end=\"opacity-0 scale-95\" class=\"shadow-theme-lg dark:bg-gray-dark absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 dark:border-gray-800\" style=\"display: none;\">\n";
+				echo "<div x-show=\"userDropdownOpen\" x-cloak x-transition:enter=\"transition ease-out duration-100\" x-transition:enter-start=\"opacity-0 scale-95\" x-transition:enter-end=\"opacity-100 scale-100\" x-transition:leave=\"transition ease-in duration-75\" x-transition:leave-start=\"opacity-100 scale-100\" x-transition:leave-end=\"opacity-0 scale-95\" class=\"shadow-lg absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800\" style=\"display: none;\">\n";
 				echo "<div>\n";
 				echo "<span class=\"text-theme-sm block font-medium text-gray-700 dark:text-gray-400\">".$_SESSION["wa_current_user"]->name."</span>\n";
 				echo "<span class=\"text-theme-xs mt-0.5 block text-gray-500 dark:text-gray-400\">".$db_connections[user_company()]["name"]."</span>\n";
 				echo "</div>\n";
-				echo "<ul class=\"flex flex-col gap-1 border-b border-gray-200 pt-4 pb-3 dark:border-gray-800\">\n";
+				echo "<ul class=\"flex flex-col gap-1 border-b border-gray-200 pt-4 pb-3 dark:border-gray-700\">\n";
 				echo "<li>\n";
 				echo "<a href=\"$path_to_root/admin/dashboard.php?sel_app=$sel_app\" class=\"group text-theme-sm flex items-center gap-3 rounded-lg px-3 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300\">\n";
 				echo "<svg class=\"fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n";
@@ -568,7 +569,7 @@
 				$phelp = implode('; ', $Pagehelp);
 				$Ajax->addUpdate(true, 'hotkeyshelp', $phelp);
 				
-				echo "<div class=\"flex items-center justify-between border-t border-gray-200 bg-white px-6 py-3 dark:border-gray-800 dark:bg-gray-900\">\n";
+				echo "<div class=\"flex items-center justify-between border-t border-gray-200 bg-white px-6 py-3 dark:border-[#344054] dark:bg-[#1d2939]\">\n";
 				echo "<div class=\"text-theme-xs text-gray-500 dark:text-gray-400\">".Today()." | ".Now()."</div>\n";
 				echo "<div id='hotkeyshelp' class=\"text-theme-xs text-gray-500 dark:text-gray-400\">".$phelp."</div>\n";
 				echo "</div>\n";
@@ -585,7 +586,7 @@
 			
 			if ($no_menu == false)
 			{
-				echo "<footer class=\"border-t border-gray-200 bg-white py-4 dark:border-gray-800 dark:bg-gray-900\">\n";
+				echo "<footer class=\"border-t border-gray-200 bg-white py-4 dark:border-[#344054] dark:bg-[#1d2939]\">\n";
 				echo "<div class=\"mx-auto max-w-screen-2xl px-6 text-center\">\n";
 				echo "<a target='_blank' href='".$SysPrefs->power_url."' class=\"text-theme-xs text-gray-500 dark:text-gray-400\">";
 				echo $SysPrefs->app_title." $version - "._("Theme:")." ".user_theme()." - ".show_users_online();
@@ -626,7 +627,7 @@
         		if (!$_SESSION["wa_current_user"]->check_module_access($module))
         			continue;
 				
-				echo "<div class=\"rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-900\">\n";
+				echo "<div class=\"rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-[#344054] dark:bg-[#1d2939]\">\n";
 				echo "<h3 class=\"mb-4 text-lg font-semibold text-gray-800 dark:text-white/90\">".$module->name."</h3>\n";
 				echo "<div class=\"space-y-2\">\n";
 				

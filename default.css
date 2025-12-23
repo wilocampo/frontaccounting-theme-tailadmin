@@ -472,15 +472,15 @@ button[value="Search"]::before {
 .dark .editbutton,
 .dark .navibutton,
 .dark .ajaxbutton {
-    background: #1f2937 !important;
-    border-color: #374151 !important;
+    background: #1d2939 !important;
+    border-color: #344054 !important;
     color: #d1d5db !important;
 }
 
 .dark .editbutton:hover,
 .dark .navibutton:hover,
 .dark .ajaxbutton:hover {
-    background: #374151 !important;
+    background: #252f3f !important;
     border-color: #465fff !important;
 }
 
@@ -558,6 +558,74 @@ tr:hover {
     box-shadow: none;
 }
 
+/* ===== FrontAccounting Specific Classes ===== */
+
+/* Label cells (form labels) */
+.label {
+    background-color: #f9fafb !important;
+    color: #374151 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Table headers */
+.tableheader, .tableheader2, td.tableheader, td.tableheader2 {
+    background-color: #f3f4f6 !important;
+    color: #374151 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* Table style 2 (lighter borders) */
+.tablestyle2 {
+    border-color: #e5e7eb;
+}
+
+.tablestyle2 td {
+    border-color: #e5e7eb;
+}
+
+/* Inner table style */
+.tablestyle_inner {
+    border-color: #f3f4f6;
+}
+
+.tablestyle_inner td {
+    border-color: #f3f4f6;
+}
+
+/* Alternating rows */
+.oddrow {
+    background-color: #ffffff !important;
+}
+
+.oddrow td {
+    background-color: transparent !important;
+}
+
+.evenrow {
+    background-color: #f9fafb !important;
+}
+
+.evenrow td {
+    background-color: transparent !important;
+}
+
+/* Special status backgrounds */
+.overduebg {
+    background-color: #fee2e2 !important;
+}
+
+.overduefg {
+    color: #dc2626 !important;
+}
+
 /* Compatibility Classes */
 .tr, .td, .th {
     font-size: 14px;
@@ -582,14 +650,18 @@ textarea:focus {
 }
 
 .dark textarea {
-    background: #1f2937 !important;
-    border-color: #374151 !important;
+    background: #1d2939 !important;
+    border-color: #344054 !important;
     color: #f9fafb !important;
 }
 
 .dark textarea:focus {
     border-color: #465fff !important;
     box-shadow: 0 0 0 3px rgba(70, 95, 255, 0.2) !important;
+}
+
+.dark textarea::placeholder {
+    color: #667085 !important;
 }
 
 /* ===== TailAdmin-style Alerts ===== */
@@ -1076,8 +1148,8 @@ td > input.date + a:hover::before {
 
 /* Dark mode calendar */
 .dark #CC {
-    background-color: #1f2937;
-    border-color: #374151;
+    background-color: #1d2939;
+    border-color: #344054;
 }
 
 .dark #CC .header {
@@ -1085,7 +1157,7 @@ td > input.date + a:hover::before {
 }
 
 .dark #CC .weekday {
-    background-color: #111827;
+    background-color: #101828;
     color: #d1d5db;
 }
 
@@ -1095,7 +1167,7 @@ td > input.date + a:hover::before {
 }
 
 .dark #CC .weekno {
-    background-color: #374151;
+    background-color: #252f3f;
     color: #9ca3af;
 }
 
@@ -1112,38 +1184,75 @@ td > input.date + a:hover::before {
 }
 
 .dark #CC .empty {
-    background-color: #1f2937;
+    background-color: #1d2939;
 }
 
 /* ===== Dark Mode Support ===== */
+/* TailAdmin color palette for dark mode:
+   - Background: #101828
+   - Sidebar/Header: #1d2939
+   - Cards/Panels: #1d2939
+   - Input background: #1d2939
+   - Input border: #344054
+   - Text: #f9fafb, #e5e7eb, #d1d5db
+   - Muted text: #667085
+*/
+
 .dark body {
-    background: #111827;
+    background: #101828;
     color: #f9fafb;
 }
 
-.dark input, .dark select, .dark textarea {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
+.dark input, .dark select {
+    background: #1d2939 !important;
+    border-color: #344054 !important;
+    color: #f9fafb !important;
+}
+
+.dark input::placeholder, .dark select::placeholder {
+    color: #667085 !important;
+}
+
+.dark input:focus, .dark select:focus {
+    border-color: #465fff !important;
+    box-shadow: 0 0 0 3px rgba(70, 95, 255, 0.2) !important;
 }
 
 .dark table {
-    background: #1f2937;
+    background: #1d2939;
+    border-color: #344054;
 }
 
 .dark th {
-    background: #111827;
-    color: #d1d5db;
-    border-color: #374151;
+    background: #101828;
+    color: #e5e7eb;
+    border-color: #344054;
 }
 
 .dark td {
-    color: #d1d5db;
-    border-color: #374151;
+    color: #e5e7eb;
+    border-color: #344054;
 }
 
 .dark tr:hover {
-    background: #111827;
+    background: #252f3f;
+}
+
+.dark tr:nth-child(even) {
+    background: rgba(29, 41, 57, 0.5);
+}
+
+/* Dark mode labels and text */
+.dark label, .dark .label {
+    color: #e5e7eb !important;
+}
+
+.dark a {
+    color: #93c5fd;
+}
+
+.dark a:hover {
+    color: #bfdbfe;
 }
 
 /* Dark mode menu styles */
@@ -1351,5 +1460,325 @@ a[target="_blank"]:hover {
 
 .dark table.tablestyle_inner tr:last-child td {
     background-color: #111827;
+}
+
+/* ===== Additional Dark Mode Fixes ===== */
+
+/* Dark mode for main content area */
+.dark .rounded-\[10px\],
+.dark .bg-white {
+    background: #1f2937 !important;
+}
+
+/* Dark mode for section titles */
+.dark .font-semibold,
+.dark .text-lg {
+    color: #f3f4f6 !important;
+}
+
+/* Dark mode table styles */
+.dark table.tablestyle_inner,
+.dark table[class*="tablestyle"] {
+    background: #1d2939;
+    border-color: #344054;
+}
+
+/* Dark mode for FrontAccounting specific classes */
+.dark .tablestyle,
+.dark .tablestyle2,
+.dark .tablestyle_inner {
+    background: #1d2939 !important;
+    border-color: #344054 !important;
+}
+
+/* Dark mode for select dropdown */
+.dark select option {
+    background: #1d2939;
+    color: #f9fafb;
+}
+
+/* Dark mode center buttons container */
+.dark center {
+    background: transparent;
+}
+
+/* Dark mode Back button */
+.dark button[value="Back"],
+.dark input[value="Back"] {
+    background: #252f3f !important;
+    border-color: #344054 !important;
+    color: #e5e7eb !important;
+}
+
+.dark button[value="Back"]:hover,
+.dark input[value="Back"]:hover {
+    background: #344054 !important;
+}
+
+/* Dark mode secondary buttons (Cancel, etc) */
+.dark button[value*="Cancel"],
+.dark input[value*="Cancel"] {
+    background: #344054 !important;
+    color: white !important;
+}
+
+.dark button[value*="Cancel"]:hover,
+.dark input[value*="Cancel"]:hover {
+    background: #475467 !important;
+}
+
+/* Dark mode footer */
+.dark footer,
+.dark .footer {
+    background: #1d2939 !important;
+    border-color: #344054 !important;
+    color: #9ca3af !important;
+}
+
+/* Dark mode empty states and helper text */
+.dark .text-gray-400,
+.dark .text-gray-500,
+.dark .text-gray-600 {
+    color: #9ca3af !important;
+}
+
+/* Dark mode for number/amount fields */
+.dark input[type="text"].small,
+.dark input[type="text"].big,
+.dark input.amount {
+    background: #1d2939 !important;
+    color: #f9fafb !important;
+    border-color: #344054 !important;
+}
+
+/* Dark mode readonly inputs */
+.dark input[readonly],
+.dark input:disabled,
+.dark select:disabled {
+    background: #101828 !important;
+    color: #667085 !important;
+    border-color: #344054 !important;
+    cursor: not-allowed;
+}
+
+/* Dark mode alerts */
+.dark .err_msg {
+    background: rgba(185, 28, 28, 0.15) !important;
+    border-color: #b91c1c !important;
+    color: #fca5a5 !important;
+}
+
+.dark .warn_msg {
+    background: rgba(217, 119, 6, 0.15) !important;
+    border-color: #d97706 !important;
+    color: #fcd34d !important;
+}
+
+.dark .note_msg {
+    background: rgba(37, 99, 235, 0.15) !important;
+    border-color: #2563eb !important;
+    color: #93c5fd !important;
+}
+
+/* Dark mode horizontal rules */
+.dark hr {
+    border-color: #344054;
+}
+
+/* Dark mode for form fieldsets and legends */
+.dark fieldset {
+    border-color: #344054;
+}
+
+.dark legend {
+    color: #e5e7eb;
+}
+
+/* ===== Comprehensive Dark Mode for Form Tables ===== */
+
+/* ALL table cells in dark mode should have transparent/dark background and light text */
+.dark td {
+    background: transparent !important;
+    color: #e5e7eb !important;
+}
+
+/* Table backgrounds */
+.dark table {
+    background: #1d2939 !important;
+}
+
+.dark .tablestyle td,
+.dark .tablestyle2 td,
+.dark .tablestyle_inner td,
+.dark .tablestyle_noborder td {
+    background: transparent !important;
+    color: #e5e7eb !important;
+    border-color: #344054 !important;
+}
+
+/* Form label cells (cells without inputs) */
+.dark td:not(:has(input)):not(:has(select)):not(:has(textarea)):not(:has(button)) {
+    color: #d1d5db !important;
+}
+
+/* Cells with inputs should have transparent background to show input styling */
+.dark td:has(input),
+.dark td:has(select),
+.dark td:has(textarea) {
+    background: transparent !important;
+}
+
+/* Nested tables */
+.dark table table {
+    background: transparent !important;
+}
+
+.dark table table td {
+    background: transparent !important;
+}
+
+/* Amount/number display cells */
+.dark td[align="right"],
+.dark td.amount {
+    color: #f9fafb !important;
+}
+
+/* Negative amounts in red */
+.dark td[style*="color:red"],
+.dark td[style*="color:#FF0000"],
+.dark .red,
+.dark .amount.negative {
+    color: #f87171 !important;
+}
+
+/* Font elements inside td */
+.dark td font,
+.dark td span {
+    color: inherit !important;
+}
+
+/* Fix white backgrounds bleeding through */
+.dark center {
+    background: transparent !important;
+}
+
+.dark center table,
+.dark center td {
+    background: transparent !important;
+}
+
+/* Row hover in dark mode */
+.dark tr:hover td {
+    background: rgba(37, 47, 63, 0.5) !important;
+}
+
+/* Links inside table cells */
+.dark td a {
+    color: #93c5fd !important;
+}
+
+.dark td a:hover {
+    color: #bfdbfe !important;
+}
+
+/* Bold text in tables */
+.dark td b,
+.dark td strong {
+    color: #f9fafb !important;
+}
+
+/* Table header cells */
+.dark th,
+.dark .tableheader,
+.dark td.tableheader {
+    background: #101828 !important;
+    color: #d1d5db !important;
+    border-color: #344054 !important;
+}
+
+/* Images in cells - search icons etc */
+.dark td img {
+    opacity: 0.9;
+}
+
+/* ===== Dark Mode for FrontAccounting Specific Classes ===== */
+
+/* Dark mode label cells */
+.dark .label {
+    background-color: #101828 !important;
+    color: #d1d5db !important;
+}
+
+/* Dark mode table headers */
+.dark .tableheader, 
+.dark .tableheader2, 
+.dark td.tableheader, 
+.dark td.tableheader2 {
+    background-color: #101828 !important;
+    color: #d1d5db !important;
+    border-bottom-color: #344054 !important;
+}
+
+/* Dark mode table styles */
+.dark .tablestyle {
+    border-color: #344054 !important;
+}
+
+.dark .tablestyle td {
+    border-color: #344054 !important;
+}
+
+.dark .tablestyle2 {
+    border-color: #344054 !important;
+}
+
+.dark .tablestyle2 td {
+    border-color: #344054 !important;
+}
+
+.dark .tablestyle_inner {
+    border-color: #1d2939 !important;
+}
+
+.dark .tablestyle_inner td {
+    border-color: #1d2939 !important;
+}
+
+/* Dark mode alternating rows */
+.dark .oddrow {
+    background-color: #1d2939 !important;
+}
+
+.dark .oddrow td {
+    background-color: transparent !important;
+    color: #e5e7eb !important;
+}
+
+.dark .evenrow {
+    background-color: #101828 !important;
+}
+
+.dark .evenrow td {
+    background-color: transparent !important;
+    color: #e5e7eb !important;
+}
+
+.dark .oddrow:hover,
+.dark .evenrow:hover {
+    background-color: #252f3f !important;
+}
+
+.dark .oddrow:hover td,
+.dark .evenrow:hover td {
+    background-color: transparent !important;
+}
+
+/* Dark mode special status */
+.dark .overduebg {
+    background-color: rgba(220, 38, 38, 0.2) !important;
+}
+
+.dark .overduefg {
+    color: #f87171 !important;
 }
 
