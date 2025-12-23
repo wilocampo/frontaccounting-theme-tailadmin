@@ -1785,6 +1785,9 @@ a[target="_blank"]:hover {
 /* ===== Login Page Styles ===== */
 /* Modern TailAdmin-inspired login page */
 
+/* Import Outfit font for login page */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 #loginscreen {
     background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 50%, #1e293b 100%);
     min-height: 100vh;
@@ -1795,6 +1798,11 @@ a[target="_blank"]:hover {
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 20px;
+}
+
+/* Apply font to all login page elements */
+#loginscreen * {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Title text - always visible */
@@ -1897,28 +1905,34 @@ a[target="_blank"]:hover {
     background: #ffffff;
 }
 
+/* Login submit button - note: button is outside .login table */
+#loginscreen input[type="submit"],
 .login input[type="submit"] {
-    width: 100%;
+    width: auto;
+    min-width: 200px;
     height: 48px;
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-    color: #ffffff;
+    padding: 0 2rem;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
+    color: #ffffff !important;
     font-size: 1rem;
     font-weight: 600;
-    border: none;
+    border: none !important;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 1rem;
 }
 
+#loginscreen input[type="submit"]:hover,
 .login input[type="submit"]:hover {
-    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
 }
 
+#loginscreen input[type="submit"]:disabled,
 .login input[type="submit"]:disabled {
-    background: #9ca3af;
+    background: #9ca3af !important;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
