@@ -1,0 +1,7 @@
+<svg width="200" height="32" viewBox="0 0 200 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- FA Icon -->
+<rect x="0" y="0" width="32" height="32" rx="6" fill="#465FFF"/>
+<text x="16" y="22" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">FA</text>
+<!-- FrontAccounting Text -->
+<text x="40" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#1F2937">FrontAccounting</text>
+</svg>

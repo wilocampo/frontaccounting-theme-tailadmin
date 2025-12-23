@@ -1,0 +1,1355 @@
+/*--------------------------------------------------\
+| tailadmin       |               | default.css     |
+|---------------------------------------------------|
+| TailAdmin Theme for FrontAccounting               |
+| Modern Tailwind CSS-based admin dashboard         |
+\--------------------------------------------------*/
+
+/* Note: Tailwind CSS is loaded via CDN in renderer.php */
+
+/* Alpine.js x-cloak - hide elements until Alpine initializes */
+[x-cloak] {
+    display: none !important;
+}
+
+/* ===== Remove Default Link Styling from Menus ===== */
+/* Sidebar menu links - remove underlines */
+.sidebar a,
+.sidebar a:visited,
+.sidebar a:hover,
+.sidebar a:active,
+.sidebar a:link,
+.menu-item,
+.menu-item:visited,
+.menu-item:hover,
+.menu-item:active,
+.menu-item:link,
+.menu-dropdown-item,
+.menu-dropdown-item:visited,
+.menu-dropdown-item:hover,
+.menu-dropdown-item:active,
+.menu-dropdown-item:link {
+    text-decoration: none !important;
+    -webkit-text-decoration: none !important;
+}
+
+/* Header menu links - remove underlines */
+header a,
+header a:visited,
+header a:hover,
+header a:active,
+header a:link,
+header button {
+    text-decoration: none !important;
+    -webkit-text-decoration: none !important;
+}
+
+/* Reset link colors in sidebar - override visited link purple */
+.sidebar a,
+.sidebar a:link,
+.sidebar a:visited,
+header a,
+header a:link,
+header a:visited {
+    color: inherit;
+}
+
+/* Dropdown menu item colors - override visited purple */
+.menu-dropdown-item-inactive,
+.menu-dropdown-item-inactive:link,
+.menu-dropdown-item-inactive:visited {
+    color: #4b5563 !important;
+}
+
+.menu-dropdown-item-inactive:hover {
+    color: #1f2937 !important;
+}
+
+.menu-dropdown-item-active,
+.menu-dropdown-item-active:link,
+.menu-dropdown-item-active:visited,
+.menu-dropdown-item-active:hover {
+    color: #465fff !important;
+}
+
+/* Menu item colors - override visited purple */
+.menu-item-inactive,
+.menu-item-inactive:link,
+.menu-item-inactive:visited {
+    color: #374151 !important;
+}
+
+.menu-item-inactive:hover {
+    color: #1f2937 !important;
+}
+
+.menu-item-active,
+.menu-item-active:link,
+.menu-item-active:visited {
+    color: #465fff !important;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f9fafb;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* Ensure no extra space at top of page */
+#js1, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default form margins */
+form {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* First element in main content shouldn't have top margin */
+main > div > *:first-child {
+    margin-top: 0;
+}
+
+/* Center elements - proper button alignment */
+center {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+}
+
+/* FrontAccounting Form Elements */
+input[type="text"], input[type="number"], input[type="password"], 
+input[type="email"], input[type="date"], select, textarea {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: #1f2937;
+    background: white;
+    transition: all 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #465fff;
+    box-shadow: 0 0 0 3px rgba(70, 95, 255, 0.1);
+}
+
+input.small {
+    width: 50px;
+}
+
+input.big {
+    width: 100px;
+}
+
+/* ===== Buttons - Simple Styles ===== */
+
+/* Basic button styling */
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+button,
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 0.375rem;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+button:hover,
+.btn:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+/* ===== Primary Action Buttons (.btn style) ===== */
+/* These get the prominent TailAdmin button styling */
+.btn,
+button.ajaxsubmit,
+button.inputsubmit,
+button[value*="Place"],
+button[value*="Cancel Order"],
+button[value*="Add"],
+button[value*="Update"],
+button[value*="Search"],
+button[value*="Process"],
+button[value*="Save"],
+button[value*="Submit"],
+button[value*="Create"],
+button[value*="Delete"],
+button[value*="Remove"],
+button[value*="Cancel"],
+button[value*="Confirm"],
+button[value*="Enter"],
+button[value*="Post"],
+button[value*="Select"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    border: none;
+    background: #465fff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    min-height: 44px;
+    height: 44px;
+}
+
+.btn:hover,
+button.ajaxsubmit:hover,
+button.inputsubmit:hover,
+button[value*="Place"]:hover,
+button[value*="Cancel Order"]:hover,
+button[value*="Add"]:hover,
+button[value*="Update"]:hover,
+button[value*="Search"]:hover,
+button[value*="Process"]:hover,
+button[value*="Save"]:hover,
+button[value*="Submit"]:hover,
+button[value*="Create"]:hover,
+button[value*="Delete"]:hover,
+button[value*="Remove"]:hover,
+button[value*="Cancel"]:hover,
+button[value*="Confirm"]:hover,
+button[value*="Enter"]:hover,
+button[value*="Post"]:hover,
+button[value*="Select"]:hover {
+    background: #3641f5;
+    box-shadow: 0 4px 6px -1px rgba(70, 95, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Success buttons (green) - Add, Update, Save, Process, Place */
+button[value*="Add"],
+button[value*="Update"],
+button[value*="Save"],
+button[value*="Process"],
+button[value*="Submit"],
+button[value*="Confirm"],
+button[value*="Enter"],
+button[value*="Create"],
+button[value*="Post"],
+button[value*="Place"] {
+    background: #10b981 !important;
+    border: none !important;
+    color: white !important;
+}
+
+button[value*="Add"]:hover,
+button[value*="Update"]:hover,
+button[value*="Save"]:hover,
+button[value*="Process"]:hover,
+button[value*="Submit"]:hover,
+button[value*="Confirm"]:hover,
+button[value*="Enter"]:hover,
+button[value*="Create"]:hover,
+button[value*="Post"]:hover,
+button[value*="Place"]:hover {
+    background: #059669 !important;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Danger buttons (red) - Delete, Remove */
+button[value*="Delete"],
+button[value*="Remove"] {
+    background: #ef4444 !important;
+    border: none !important;
+    color: white !important;
+}
+
+button[value*="Delete"]:hover,
+button[value*="Remove"]:hover {
+    background: #dc2626 !important;
+    box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Secondary buttons (gray) - Cancel */
+button[value*="Cancel Order"],
+button[value*="Cancel"] {
+    background: #6b7280 !important;
+    border: none !important;
+    color: white !important;
+}
+
+button[value*="Cancel Order"]:hover,
+button[value*="Cancel"]:hover {
+    background: #4b5563 !important;
+    box-shadow: 0 4px 6px -1px rgba(107, 114, 128, 0.3) !important;
+}
+
+/* Primary buttons (blue) - Search, Select */
+button[value="Search"],
+button[value*="Select"] {
+    background: #465fff !important;
+    border: none !important;
+    color: white !important;
+}
+
+button[value="Search"]:hover,
+button[value*="Select"]:hover {
+    background: #3641f5 !important;
+    box-shadow: 0 4px 6px -1px rgba(70, 95, 255, 0.3) !important;
+}
+
+/* Edit/Icon buttons - keep small and neutral */
+.editbutton,
+.navibutton,
+.ajaxbutton {
+    padding: 0.375rem !important;
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    color: #374151 !important;
+    min-width: auto !important;
+    box-shadow: none !important;
+}
+
+.editbutton:hover,
+.navibutton:hover,
+.ajaxbutton:hover {
+    background: #f9fafb !important;
+    border-color: #465fff !important;
+    transform: none !important;
+}
+
+/* Button icons - hide old icons on text buttons only, keep icons on icon-only buttons */
+button.ajaxsubmit img,
+button.inputsubmit img {
+    display: none !important;
+}
+
+/* Keep images visible for edit/delete icon buttons */
+.editbutton img,
+button.editbutton img,
+a.editbutton img {
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    vertical-align: middle;
+}
+
+/* Add Heroicons to text buttons via CSS */
+
+/* Add buttons get a plus icon */
+button[value*="Add"]::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 4.5v15m7.5-7.5h-15'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Update/Save buttons get a diskette/save icon */
+button[value*="Update"]::before,
+button[value*="Save"]::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Place/Process/Submit/Confirm/Post/Create/Enter buttons get a checkmark icon */
+button[value*="Place"]::before,
+button[value*="Process"]::before,
+button[value*="Submit"]::before,
+button[value*="Confirm"]::before,
+button[value*="Post"]::before,
+button[value*="Create"]::before,
+button[value*="Enter"]::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m4.5 12.75 6 6 9-13.5'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Cancel buttons get an X icon */
+button[value*="Cancel"]::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18 18 6M6 6l12 12'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Delete buttons get a trash icon */
+button[value*="Delete"]::before,
+button[value*="Remove"]::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Search buttons get a magnifying glass icon */
+button[value="Search"]::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Dark mode buttons */
+.dark .btn,
+.dark button.ajaxsubmit,
+.dark button.inputsubmit {
+    background: #465fff;
+    border: none;
+    color: white;
+}
+
+.dark .btn:hover,
+.dark button.ajaxsubmit:hover,
+.dark button.inputsubmit:hover {
+    background: #3641f5;
+}
+
+.dark .editbutton,
+.dark .navibutton,
+.dark .ajaxbutton {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+    color: #d1d5db !important;
+}
+
+.dark .editbutton:hover,
+.dark .navibutton:hover,
+.dark .ajaxbutton:hover {
+    background: #374151 !important;
+    border-color: #465fff !important;
+}
+
+/* Links */
+a {
+    color: #465fff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #3641f5;
+    text-decoration: underline;
+}
+
+a:link {
+    color: #465fff;
+}
+
+a:active {
+    color: #2a31d8;
+}
+
+.inactive {
+    color: #9ca3af;
+    text-decoration: line-through;
+}
+
+option.inactive {
+    text-decoration: line-through;
+    color: #9ca3af;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background: #f9fafb;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+td {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+    background: #f9fafb;
+}
+
+.tablestyle {
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.tablestyle_noborder {
+    border: none;
+    box-shadow: none;
+}
+
+/* Compatibility Classes */
+.tr, .td, .th {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+textarea {
+    font-size: 0.875rem !important;
+    padding: 0.75rem 1rem !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.5rem !important;
+    resize: vertical;
+    line-height: 1.5 !important;
+    color: #1f2937 !important;
+    background: white !important;
+}
+
+textarea:focus {
+    outline: none !important;
+    border-color: #465fff !important;
+    box-shadow: 0 0 0 3px rgba(70, 95, 255, 0.1) !important;
+}
+
+.dark textarea {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+    color: #f9fafb !important;
+}
+
+.dark textarea:focus {
+    border-color: #465fff !important;
+    box-shadow: 0 0 0 3px rgba(70, 95, 255, 0.2) !important;
+}
+
+/* ===== TailAdmin-style Alerts ===== */
+/* Based on https://demo.tailadmin.com/alerts */
+
+/* Base alert styles */
+.err_msg,
+.warn_msg,
+.note_msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Error Alert (Red) */
+.err_msg {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.err_msg::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Warning Alert (Amber/Orange) */
+.warn_msg {
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+}
+
+.warn_msg::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23f59e0b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Notice/Info Alert (Blue) */
+.note_msg {
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e40af;
+}
+
+.note_msg::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%233b82f6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Dark mode alerts */
+.dark .err_msg {
+    background-color: rgba(220, 38, 38, 0.1);
+    border-color: rgba(220, 38, 38, 0.3);
+    color: #fca5a5;
+}
+
+.dark .warn_msg {
+    background-color: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #fcd34d;
+}
+
+.dark .note_msg {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+}
+
+/* Success Alert (Green) - for future use */
+.success_msg {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+.success_msg::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%2322c55e'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.dark .success_msg {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #86efac;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ===== Sidebar Menu Styles ===== */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-decoration: none;
+    position: relative;
+}
+
+/* Active menu item - light background like TailAdmin demo */
+.menu-item-active {
+    background-color: #eff6ff;
+    color: #465fff;
+}
+
+.menu-item-inactive {
+    color: #374151;
+}
+
+.menu-item-inactive:hover {
+    background-color: #f3f4f6;
+    text-decoration: none;
+}
+
+/* Icon colors for active state */
+.menu-item-icon-active,
+.menu-item-active svg {
+    color: #465fff;
+    stroke: #465fff;
+}
+
+/* Icon colors for inactive state */
+.menu-item-icon-inactive {
+    color: #6b7280;
+    stroke: #6b7280;
+}
+
+.menu-item-inactive:hover .menu-item-icon-inactive,
+.menu-item-inactive:hover svg {
+    color: #374151;
+    stroke: #374151;
+}
+
+/* Ensure proper sizing and visibility for menu icons */
+.menu-item svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+/* Ensure stroke-based icons (Heroicons) inherit the right colors */
+.menu-item-active svg:not(.menu-item-arrow) {
+    color: #465fff !important;
+    stroke: #465fff !important;
+}
+
+.menu-item-inactive svg:not(.menu-item-arrow) {
+    color: #6b7280 !important;
+    stroke: #6b7280 !important;
+}
+
+.menu-item-inactive:hover svg:not(.menu-item-arrow) {
+    color: #374151 !important;
+    stroke: #374151 !important;
+}
+
+.menu-item-text {
+    white-space: nowrap;
+}
+
+.menu-item-arrow {
+    margin-left: auto;
+    transition: transform 0.2s;
+    color: #9ca3af;
+    stroke: #9ca3af;
+}
+
+.menu-item-arrow-active {
+    transform: rotate(180deg);
+}
+
+.menu-item-arrow-inactive {
+    transform: rotate(0deg);
+}
+
+/* Arrow color for active menu */
+.menu-item-active .menu-item-arrow {
+    color: #465fff;
+    stroke: #465fff;
+}
+
+/* Arrow color for inactive menu */
+.menu-item-inactive .menu-item-arrow {
+    color: #9ca3af;
+    stroke: #9ca3af;
+}
+
+.menu-item-inactive:hover .menu-item-arrow {
+    color: #6b7280;
+    stroke: #6b7280;
+}
+
+.menu-dropdown {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-dropdown-item {
+    display: block;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+    border-radius: 0.375rem;
+    transition: all 0.15s;
+    text-decoration: none !important;
+    font-weight: 400;
+}
+
+.menu-dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    text-decoration: none !important;
+}
+
+.menu-dropdown-item-inactive {
+    color: #4b5563;
+}
+
+.menu-dropdown-item-inactive:hover {
+    background-color: #f3f4f6;
+    color: #1f2937;
+}
+
+.menu-dropdown-item-active {
+    color: #465fff !important;
+    background-color: #eff6ff;
+    font-weight: 500;
+}
+
+.menu-dropdown-item-active:hover {
+    background-color: #dbeafe;
+    color: #465fff !important;
+}
+
+.menu-group-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ===== Header Styles ===== */
+.shadow-theme-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-theme-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-theme-xs {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Scrollbar Styles ===== */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ===== Z-index utilities ===== */
+.z-99999 {
+    z-index: 99999;
+}
+
+.z-9999 {
+    z-index: 9999;
+}
+
+.z-9998 {
+    z-index: 9998;
+}
+
+/* ===== Date Picker Input Styles ===== */
+/* Make date input with calendar icon inside */
+td:has(> input.date) {
+    position: relative;
+}
+
+input.date {
+    padding-right: 3rem !important;
+    min-width: 140px;
+}
+
+/* Hide the old calendar image and style the link as icon container */
+td > input.date + a {
+    position: absolute;
+    right: 12px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 100%;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* Hide the old calendar gif image */
+td > input.date + a img {
+    display: none !important;
+}
+
+/* Add Heroicon calendar SVG as background */
+td > input.date + a::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5'/%3E%3C/svg%3E");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+td > input.date + a:hover::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23465fff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5'/%3E%3C/svg%3E");
+}
+
+/* Dark mode date picker icon */
+.dark td > input.date + a::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5'/%3E%3C/svg%3E");
+}
+
+.dark td > input.date + a:hover::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23818cf8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5'/%3E%3C/svg%3E");
+}
+
+/* ===== Calendar Popup Styles ===== */
+/* The CCIframe and CC div are used for the calendar popup */
+#CCIframe {
+    display: none;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    height: 250px;
+    width: 270px;
+    z-index: 99;
+}
+
+#CC {
+    position: absolute;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: none;
+    z-index: 100;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+#CC table {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+}
+
+#CC th {
+    font-weight: 500;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+#CC th a {
+    font-weight: 500;
+    text-decoration: none;
+    color: #fff;
+    padding: 0.25rem;
+}
+
+#CC td {
+    text-align: center;
+    padding: 0.25rem;
+}
+
+#CC .header {
+    background-color: #465fff;
+    color: #fff;
+}
+
+#CC .weekday {
+    background-color: #f9fafb;
+    color: #374151;
+    cursor: pointer;
+}
+
+#CC .weekend {
+    background-color: #fef3c7;
+    color: #374151;
+    cursor: pointer;
+}
+
+#CC .weekno {
+    background-color: #e5e7eb;
+    color: #6b7280;
+}
+
+#CC .current {
+    background-color: #dbeafe;
+    color: #1e40af;
+    font-weight: 600;
+}
+
+#CC .weekday:hover,
+#CC .weekend:hover,
+#CC .current:hover {
+    background-color: #465fff;
+    color: #fff;
+}
+
+#CC .previous,
+#CC .next {
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+#CC .previous a,
+#CC .next a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#CC .title {
+    font-weight: 600;
+    color: #fff;
+}
+
+#CC .empty {
+    background-color: #f3f4f6;
+}
+
+/* Dark mode calendar */
+.dark #CC {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.dark #CC .header {
+    background-color: #465fff;
+}
+
+.dark #CC .weekday {
+    background-color: #111827;
+    color: #d1d5db;
+}
+
+.dark #CC .weekend {
+    background-color: #292524;
+    color: #d1d5db;
+}
+
+.dark #CC .weekno {
+    background-color: #374151;
+    color: #9ca3af;
+}
+
+.dark #CC .current {
+    background-color: rgba(70, 95, 255, 0.3);
+    color: #818cf8;
+}
+
+.dark #CC .weekday:hover,
+.dark #CC .weekend:hover,
+.dark #CC .current:hover {
+    background-color: #465fff;
+    color: #fff;
+}
+
+.dark #CC .empty {
+    background-color: #1f2937;
+}
+
+/* ===== Dark Mode Support ===== */
+.dark body {
+    background: #111827;
+    color: #f9fafb;
+}
+
+.dark input, .dark select, .dark textarea {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+}
+
+.dark table {
+    background: #1f2937;
+}
+
+.dark th {
+    background: #111827;
+    color: #d1d5db;
+    border-color: #374151;
+}
+
+.dark td {
+    color: #d1d5db;
+    border-color: #374151;
+}
+
+.dark tr:hover {
+    background: #111827;
+}
+
+/* Dark mode menu styles */
+.dark .menu-item-active {
+    background-color: rgba(70, 95, 255, 0.15);
+    color: #818cf8;
+}
+
+.dark .menu-item-active svg {
+    color: #818cf8;
+    stroke: #818cf8;
+}
+
+.dark .menu-item-inactive {
+    color: #d1d5db;
+}
+
+.dark .menu-item-inactive:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .menu-item-icon-inactive,
+.dark .menu-item-inactive svg:not(.menu-item-arrow) {
+    color: #9ca3af !important;
+    stroke: #9ca3af !important;
+}
+
+.dark .menu-item-inactive:hover .menu-item-icon-inactive,
+.dark .menu-item-inactive:hover svg:not(.menu-item-arrow) {
+    color: #d1d5db !important;
+    stroke: #d1d5db !important;
+}
+
+.dark .menu-item-active svg:not(.menu-item-arrow) {
+    color: #818cf8 !important;
+    stroke: #818cf8 !important;
+}
+
+/* Dark mode arrow styles */
+.dark .menu-item-arrow {
+    color: #6b7280;
+    stroke: #6b7280;
+}
+
+.dark .menu-item-active .menu-item-arrow {
+    color: #818cf8;
+    stroke: #818cf8;
+}
+
+.dark .menu-item-inactive:hover .menu-item-arrow {
+    color: #9ca3af;
+    stroke: #9ca3af;
+}
+
+.dark .menu-dropdown-item,
+.dark .menu-dropdown-item:link,
+.dark .menu-dropdown-item:visited {
+    color: #9ca3af !important;
+}
+
+.dark .menu-dropdown-item-inactive,
+.dark .menu-dropdown-item-inactive:link,
+.dark .menu-dropdown-item-inactive:visited {
+    color: #9ca3af !important;
+}
+
+.dark .menu-dropdown-item:hover,
+.dark .menu-dropdown-item-inactive:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #f3f4f6 !important;
+}
+
+.dark .menu-dropdown-item-active,
+.dark .menu-dropdown-item-active:link,
+.dark .menu-dropdown-item-active:visited {
+    background-color: rgba(70, 95, 255, 0.15);
+    color: #818cf8 !important;
+    font-weight: 500;
+}
+
+.dark .menu-dropdown-item-active:hover {
+    background-color: rgba(70, 95, 255, 0.25);
+    color: #a5b4fc !important;
+}
+
+/* Dark mode menu item colors - override visited purple */
+.dark .menu-item-inactive,
+.dark .menu-item-inactive:link,
+.dark .menu-item-inactive:visited {
+    color: #d1d5db !important;
+}
+
+.dark .menu-item-inactive:hover {
+    color: #f3f4f6 !important;
+}
+
+.dark .menu-item-active,
+.dark .menu-item-active:link,
+.dark .menu-item-active:visited {
+    color: #818cf8 !important;
+}
+
+.dark .menu-group-title {
+    color: #6b7280;
+}
+
+/* ===== Dashboard Styles ===== */
+
+/* Dashboard Title/Heading */
+.headingtext {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* Dashboard Data Tables */
+table.tablestyle_inner,
+table[class*="tablestyle"] {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+/* Table Headers */
+.tableheader, 
+td.tableheader,
+th.tableheader {
+    background: #f9fafb !important;
+    color: #6b7280 !important;
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 0.75rem 1rem !important;
+    border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* Table Cells */
+td.tablehead,
+.tablehead {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+    color: #374151 !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+}
+
+/* Alternating Row Colors */
+tr:nth-child(even) td.tablehead {
+    background-color: #fafafa;
+}
+
+tr:hover td.tablehead {
+    background-color: #f3f4f6;
+}
+
+/* Class Balances Table - last row bold */
+table.tablestyle_inner tr:last-child td {
+    font-weight: 600;
+    background-color: #f9fafb;
+}
+
+/* Dashboard Link Styles */
+a.printlink,
+a[target="_blank"] {
+    color: #465fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a.printlink:hover,
+a[target="_blank"]:hover {
+    text-decoration: underline;
+}
+
+/* ===== Dark Mode Dashboard ===== */
+.dark .headingtext {
+    color: #f9fafb;
+}
+
+.dark .tableheader,
+.dark td.tableheader,
+.dark th.tableheader {
+    background: #111827 !important;
+    color: #9ca3af !important;
+    border-bottom-color: #374151 !important;
+}
+
+.dark td.tablehead,
+.dark .tablehead {
+    color: #d1d5db !important;
+    border-bottom-color: #374151 !important;
+}
+
+.dark tr:nth-child(even) td.tablehead {
+    background-color: #1f2937;
+}
+
+.dark tr:hover td.tablehead {
+    background-color: #374151;
+}
+
+.dark table.tablestyle_inner tr:last-child td {
+    background-color: #111827;
+}
+
