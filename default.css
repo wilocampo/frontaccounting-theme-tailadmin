@@ -1900,7 +1900,7 @@ a[target="_blank"]:hover {
 .login input[type="submit"] {
     width: 100%;
     height: 48px;
-    background: linear-gradient(135deg, #465fff 0%, #3641f5 100%);
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
     color: #ffffff;
     font-size: 1rem;
     font-weight: 600;
@@ -1912,9 +1912,9 @@ a[target="_blank"]:hover {
 }
 
 .login input[type="submit"]:hover {
-    background: linear-gradient(135deg, #3641f5 0%, #2a31d8 100%);
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(70, 95, 255, 0.4);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
 }
 
 .login input[type="submit"]:disabled {
