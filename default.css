@@ -1797,43 +1797,64 @@ a[target="_blank"]:hover {
     padding: 20px;
 }
 
+/* Title text - always visible */
 #loginscreen .titletext {
-    color: #f8fafc;
+    color: #f8fafc !important;
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
     margin-bottom: 2rem;
-    border: none;
-    background: transparent;
+    border: none !important;
+    background: transparent !important;
     width: auto;
 }
 
+#loginscreen .titletext tr,
 #loginscreen .titletext tr td {
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: none !important;
     padding: 0;
+    color: #f8fafc !important;
 }
 
+/* Remove hover effect from title */
+#loginscreen .titletext tr:hover,
+#loginscreen .titletext tr:hover td {
+    background: transparent !important;
+}
+
+/* Login card */
 .login {
     background: #ffffff;
     border-radius: 1rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    padding: 2.5rem;
+    padding: 2.5rem 3rem;
     width: 100%;
-    max-width: 420px;
+    max-width: 450px;
     border: none;
 }
 
+/* Login table cells with proper padding */
 .login td {
-    padding: 0.5rem 0;
+    padding: 0.75rem 1rem;
     background: transparent !important;
     border: none !important;
     color: #374151;
     font-size: 0.875rem;
 }
 
+.login tr {
+    background: transparent !important;
+}
+
+/* Remove hover effect from login table rows */
+.login tr:hover,
+.login tr:hover td {
+    background: transparent !important;
+}
+
 .login td[align="center"] {
-    padding: 1.5rem 0;
+    padding: 1.5rem 1rem;
 }
 
 .login td.tableheader {
@@ -1844,7 +1865,7 @@ a[target="_blank"]:hover {
     font-weight: 500;
     text-align: center;
     line-height: 1.5;
-    padding: 0.75rem 0;
+    padding: 1rem;
 }
 
 .login img {
@@ -1914,28 +1935,38 @@ a[target="_blank"]:hover {
     margin: 0.5rem 0;
 }
 
+/* Bottom bar (date/time) */
 #loginscreen .bottomBar {
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: none !important;
     margin-top: 2rem;
     width: auto;
 }
 
+#loginscreen .bottomBar tr,
 #loginscreen .bottomBar td,
 #loginscreen .bottomBarCell {
     background: transparent !important;
     border: none !important;
-    color: #94a3b8;
+    color: #94a3b8 !important;
     font-size: 0.875rem;
     text-align: center;
 }
 
+/* Remove hover from bottomBar */
+#loginscreen .bottomBar tr:hover,
+#loginscreen .bottomBar tr:hover td {
+    background: transparent !important;
+}
+
+/* Footer */
 #loginscreen .footer {
-    background: transparent;
-    border: none;
+    background: transparent !important;
+    border: none !important;
     margin-top: 1rem;
 }
 
+#loginscreen .footer tr,
 #loginscreen .footer td {
     background: transparent !important;
     border: none !important;
@@ -1943,25 +1974,31 @@ a[target="_blank"]:hover {
     padding: 0.25rem 0;
 }
 
+/* Remove hover from footer */
+#loginscreen .footer tr:hover,
+#loginscreen .footer tr:hover td {
+    background: transparent !important;
+}
+
 #loginscreen .footer a {
-    color: #64748b;
-    text-decoration: none;
+    color: #64748b !important;
+    text-decoration: none !important;
     font-size: 0.75rem;
-    transition: color 0.2s;
 }
 
+/* No hover effect on footer links */
 #loginscreen .footer a:hover {
-    color: #94a3b8;
+    color: #64748b !important;
+    text-decoration: none !important;
+    background: transparent !important;
 }
 
-/* Password reset link styling */
-#loginscreen a,
+/* Password reset link styling inside login form */
 .login a {
     color: #465fff;
     text-decoration: none;
 }
 
-#loginscreen a:hover,
 .login a:hover {
     text-decoration: underline;
 }
