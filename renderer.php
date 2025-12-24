@@ -608,12 +608,11 @@
 
 			if ($no_menu == false)
 			{
-				// Bottom status bar
+				// Bottom status bar (keyboard shortcuts only)
 				$phelp = implode('; ', $Pagehelp);
 				$Ajax->addUpdate(true, 'hotkeyshelp', $phelp);
 				
-				echo "<div class=\"flex items-center justify-between border-t border-gray-200 bg-white px-6 py-3 dark:border-[#344054] dark:bg-[#1d2939]\">\n";
-				echo "<div class=\"text-theme-xs text-gray-500 dark:text-gray-400\">".Today()." | ".Now()."</div>\n";
+				echo "<div class=\"flex items-center justify-center border-t border-gray-200 bg-white px-6 py-3 dark:border-[#344054] dark:bg-[#1d2939]\">\n";
 				echo "<div id='hotkeyshelp' class=\"text-theme-xs text-gray-500 dark:text-gray-400\">".$phelp."</div>\n";
 				echo "</div>\n";
 			}
@@ -631,6 +630,9 @@
 			{
 				echo "<footer class=\"border-t border-gray-200 bg-white py-4 dark:border-[#344054] dark:bg-[#1d2939]\">\n";
 				echo "<div class=\"mx-auto max-w-screen-2xl px-6 text-center\">\n";
+				// Date and time
+				echo "<div class=\"text-theme-xs text-gray-500 dark:text-gray-400 mb-2\">".Today()." | ".Now()."</div>\n";
+				// FrontAccounting info
 				echo "<a target='_blank' href='".$SysPrefs->power_url."' class=\"text-theme-xs text-gray-500 dark:text-gray-400\">";
 				echo $SysPrefs->app_title." $version - "._("Theme:")." ".user_theme()." - ".show_users_online();
 				echo "</a>\n";
