@@ -280,7 +280,20 @@
 				{
 					if ($_SESSION["wa_current_user"]->check_application_access($app))
 					{
-						$acc = access_string($app->name);
+						// Override display name for GL to shorten it before processing
+						$app_name = $app->name;
+						if ($app->id == 'GL') {
+							// Replace both with and without & prefix
+							$app_name = str_replace('&Banking and General Ledger', '&Banking & General Ledger', $app_name);
+							$app_name = str_replace('Banking and General Ledger', 'Banking & General Ledger', $app_name);
+						}
+						$acc = access_string($app_name);
+						// Also replace after access_string() in case HTML tags were added
+						if ($app->id == 'GL') {
+							$acc[0] = str_replace('Banking and General Ledger', 'Banking & General Ledger', $acc[0]);
+							// Handle case where B might be wrapped in <u> tags
+							$acc[0] = preg_replace('/(<u>)?B(<\/u>)?anking and General Ledger/', '$1B$2anking & General Ledger', $acc[0]);
+						}
 						$app_key = 'App_' . $app->id;
 						$is_active = ($sel_app == $app->id) || ($active_app_key == $app_key);
 						$icon_class = $is_active ? 'menu-item-icon-active' : 'menu-item-icon-inactive';
@@ -723,6 +736,10 @@
 
 			// Page title - strip keyboard shortcut marker (&) from name
 			$page_title = str_replace('&', '', $selected_app->name);
+			// Override display name for GL to shorten it
+			if ($selected_app->id == 'GL') {
+				$page_title = str_replace('Banking and General Ledger', 'Banking & General Ledger', $page_title);
+			}
 			echo "<div class=\"mb-6\">\n";
 			echo "<h1 class=\"text-2xl font-bold text-gray-800 dark:text-white/90\">".$page_title."</h1>\n";
 			echo "<p class=\"mt-1 text-sm text-gray-500 dark:text-gray-400\">"._("Select a function from the menu below or use the quick links")."</p>\n";
