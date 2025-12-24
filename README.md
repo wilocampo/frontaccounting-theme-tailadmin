@@ -24,7 +24,72 @@ A modern, responsive theme for [FrontAccounting](https://frontaccounting.com/) b
 
 ## 📸 Screenshots
 
-<!-- Add screenshots here -->
+### Dashboard & Navigation
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-28-07.png" alt="Dashboard" width="800"/>
+  <p><em>Main Dashboard</em></p>
+</div>
+
+### Sidebar & Menu
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-28-22.png" alt="Sidebar Navigation" width="800"/>
+  <p><em>Sidebar with Module Grouping</em></p>
+</div>
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-28-37.png" alt="Expanded Menu" width="800"/>
+  <p><em>Expanded Menu with Active State</em></p>
+</div>
+
+### Module Pages
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-28-46.png" alt="Sales Module" width="800"/>
+  <p><em>Sales Module with Quick Links</em></p>
+</div>
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-28-54.png" alt="Purchases Module" width="800"/>
+  <p><em>Purchases Module Page</em></p>
+</div>
+
+### Forms & Inputs
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-29-25.png" alt="Form Inputs" width="800"/>
+  <p><em>Modern Form Inputs with Styled Buttons</em></p>
+</div>
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-29-34.png" alt="Date Picker" width="800"/>
+  <p><em>Date Picker with Icon Inside Input</em></p>
+</div>
+
+### Dark Mode
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-29-55.png" alt="Dark Mode" width="800"/>
+  <p><em>Dark Mode Interface</em></p>
+</div>
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-30-30.png" alt="Dark Mode Menu" width="800"/>
+  <p><em>Dark Mode Sidebar</em></p>
+</div>
+
+### Login Page
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-31-04.png" alt="Login Page" width="800"/>
+  <p><em>Styled Login Page</em></p>
+</div>
+
+<div align="center">
+  <img src="screenshots/Screenshot From 2025-12-24 23-31-13.png" alt="Login Form" width="800"/>
+  <p><em>Login Form with Modern Styling</em></p>
+</div>
 
 ## 📋 Requirements
 
