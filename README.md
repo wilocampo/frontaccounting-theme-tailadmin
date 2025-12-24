@@ -15,7 +15,12 @@ A modern, responsive theme for [FrontAccounting](https://frontaccounting.com/) b
 - 🎨 **Tailwind CSS** - Utility-first CSS framework
 - 🔔 **Styled Alerts** - Beautiful error, warning, and info messages
 - 📅 **Modern Date Picker** - Styled calendar with icon inside input
-- 🔘 **Consistent Buttons** - Color-coded action buttons
+- 🔘 **Consistent Buttons** - Color-coded action buttons with icons
+- 📋 **Module Grouping** - Sidebar menus organized by Transactions, Inquiries, Maintenance
+- 🎯 **Quick Links** - Shortcuts bar on module main pages
+- 🖱️ **Smart Navigation** - Click menu text to navigate, arrow to expand/collapse
+- 🎴 **Card-based Layout** - Consistent card styling throughout
+- 🔑 **Keyboard Shortcuts** - Styled keyboard shortcuts display
 
 ## 📸 Screenshots
 
@@ -30,7 +35,7 @@ A modern, responsive theme for [FrontAccounting](https://frontaccounting.com/) b
 
 ### Method 1: Download ZIP
 
-1. Download the latest release from [Releases](../../releases)
+1. Download the latest release from [Releases](https://github.com/wilocampo/frontaccounting-theme-tailadmin/releases)
 2. Extract the `tailadmin` folder to your FrontAccounting `themes/` directory
 3. Log in to FrontAccounting as administrator
 4. Go to **Setup** → **User Preferences** or **Company Setup**
@@ -41,8 +46,44 @@ A modern, responsive theme for [FrontAccounting](https://frontaccounting.com/) b
 
 ```bash
 cd /path/to/frontaccounting/themes/
-git clone https://github.com/YOUR_USERNAME/fa-theme-tailadmin.git tailadmin
+git clone https://github.com/wilocampo/frontaccounting-theme-tailadmin.git tailadmin
 ```
+
+## 🔐 Login Page Configuration
+
+By default, FrontAccounting's login page uses the "default" theme. To apply the TailAdmin theme to the login page, you need to modify the FrontAccounting core configuration:
+
+### Step 1: Edit `config.php`
+
+Open your FrontAccounting `config.php` file and add the following line:
+
+```php
+$dflt_theme = 'tailadmin';
+```
+
+This sets the default theme for the login page and password reset page.
+
+### Step 2: Verify Core Files
+
+The theme requires modifications to two core files to use the `$dflt_theme` variable:
+
+1. **`access/login.php`** (around line 53-54):
+   ```php
+   global $SysPrefs;
+   $def_theme = isset($SysPrefs->dflt_theme) ? $SysPrefs->dflt_theme : "default";
+   ```
+
+2. **`access/password_reset.php`** (around line 27-28):
+   ```php
+   global $SysPrefs;
+   $def_theme = isset($SysPrefs->dflt_theme) ? $SysPrefs->dflt_theme : "default";
+   ```
+
+> **Note:** These modifications are required because FrontAccounting's login page doesn't use the theme hook system. The changes are minimal and only affect the theme selection logic.
+
+### Alternative: Manual Theme Selection
+
+If you prefer not to modify core files, users can still select the TailAdmin theme from their user preferences after logging in. The login page will continue to use the default theme.
 
 ## 📁 Directory Structure
 
@@ -85,6 +126,17 @@ Replace the logo files in `images/logo/`:
 
 Dark mode is automatically detected from system preferences and can be toggled via the header button. The preference is saved to localStorage.
 
+## 🎯 Sidebar Navigation
+
+The sidebar features intelligent navigation:
+
+- **Module Grouping**: Menu items are organized under headers (Transactions, Inquiries and Reports, Maintenance)
+- **Smart Click Behavior**: 
+  - Click on menu text/icon → Navigate to module main page
+  - Click on arrow → Expand/collapse submenu
+- **Active State Detection**: Automatically highlights active menu items and expands parent menus
+- **Collapsible Sidebar**: Toggle sidebar on mobile or collapse to icons on desktop
+
 ## 🔧 Button Styling
 
 Buttons are automatically styled based on their value/text:
@@ -98,6 +150,15 @@ Buttons are automatically styled based on their value/text:
 | Delete, Remove | Red | Trash |
 | Search | Blue | Magnifying glass |
 
+## 📄 Module Pages
+
+Each module (Sales, Purchases, etc.) has a dedicated main page with:
+
+- **Page Title**: Clear heading with module name
+- **Quick Links Bar**: Shortcuts to common functions (e.g., "Sales Order", "Direct Invoice")
+- **Module Cards**: Organized by function groups (Transactions, Inquiries, Maintenance)
+- **Dashboard Link**: Quick access to module dashboard
+
 ## 📝 Alert Styles
 
 FrontAccounting messages are styled as modern alerts:
@@ -105,6 +166,18 @@ FrontAccounting messages are styled as modern alerts:
 - **Error** (`.err_msg`) - Red background with exclamation icon
 - **Warning** (`.warn_msg`) - Amber background with warning icon
 - **Notice** (`.note_msg`) - Blue background with info icon
+- **Success** (`.success_msg`) - Green background with checkmark icon
+
+## 📅 Date & Time Display
+
+The date and time are displayed in the footer (matching other FrontAccounting themes), along with:
+- FrontAccounting version and theme name
+- Users online count
+- Power by information
+
+## ⌨️ Keyboard Shortcuts
+
+Keyboard shortcuts are displayed in a styled card at the bottom of the main content area, matching the theme's card design for consistency.
 
 ## 🤝 Contributing
 
@@ -131,7 +204,7 @@ This theme is released under the [GNU General Public License v3.0](LICENSE), the
 ## 📧 Support
 
 - **FrontAccounting Issues**: [FrontAccounting Forum](https://frontaccounting.com/punbb/)
-- **Theme Issues**: [GitHub Issues](../../issues)
+- **Theme Issues**: [GitHub Issues](https://github.com/wilocampo/frontaccounting-theme-tailadmin/issues)
 
 ---
 
