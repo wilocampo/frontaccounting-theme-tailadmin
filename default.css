@@ -808,24 +808,62 @@ textarea:focus {
     position: relative;
 }
 
+/* Split menu item container - looks identical to .menu-item */
+.menu-item-split {
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    position: relative;
+}
+
+/* Link part of split menu - takes most of the space */
+.menu-item-split .menu-item-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    padding: 0.625rem 0 0.625rem 0.75rem;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+/* Toggle button - seamlessly integrated */
+.menu-item-split .menu-item-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 0.75rem 0.625rem 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
 /* Active menu item - light background like TailAdmin demo */
-.menu-item-active {
+.menu-item-active,
+.menu-item-split.menu-item-active {
     background-color: #eff6ff;
     color: #465fff;
 }
 
-.menu-item-inactive {
+.menu-item-inactive,
+.menu-item-split.menu-item-inactive {
     color: #374151;
 }
 
-.menu-item-inactive:hover {
+.menu-item-inactive:hover,
+.menu-item-split.menu-item-inactive:hover {
     background-color: #f3f4f6;
     text-decoration: none;
 }
 
 /* Icon colors for active state */
 .menu-item-icon-active,
-.menu-item-active svg {
+.menu-item-active svg,
+.menu-item-split.menu-item-active svg {
     color: #465fff;
     stroke: #465fff;
 }
@@ -837,7 +875,8 @@ textarea:focus {
 }
 
 .menu-item-inactive:hover .menu-item-icon-inactive,
-.menu-item-inactive:hover svg {
+.menu-item-inactive:hover svg,
+.menu-item-split.menu-item-inactive:hover svg {
     color: #374151;
     stroke: #374151;
 }
@@ -850,12 +889,14 @@ textarea:focus {
 }
 
 /* Ensure stroke-based icons (Heroicons) inherit the right colors */
-.menu-item-active svg:not(.menu-item-arrow) {
+.menu-item-active svg:not(.menu-item-arrow),
+.menu-item-split.menu-item-active svg:not(.menu-item-arrow) {
     color: #465fff !important;
     stroke: #465fff !important;
 }
 
-.menu-item-inactive svg:not(.menu-item-arrow) {
+.menu-item-inactive svg:not(.menu-item-arrow),
+.menu-item-split.menu-item-inactive svg:not(.menu-item-arrow) {
     color: #6b7280 !important;
     stroke: #6b7280 !important;
 }
@@ -950,6 +991,58 @@ textarea:focus {
     color: #9ca3af;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+/* Module header in sidebar dropdown (e.g., "Transactions", "Inquiries and Reports") */
+.menu-module-header {
+    pointer-events: none;
+    margin-top: 0.5rem;
+}
+
+.menu-module-header:first-child {
+    margin-top: 0;
+}
+
+.menu-module-header span {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid rgba(107, 114, 128, 0.2);
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.dark .menu-module-header span {
+    color: #9ca3af;
+    border-bottom-color: rgba(156, 163, 175, 0.15);
+}
+
+/* ===== Module Card Links ===== */
+/* Links in the module cards on application main pages */
+.grid a,
+.grid a:link,
+.grid a:visited,
+.grid a:hover,
+.grid a:active {
+    color: #374151 !important;
+    text-decoration: none !important;
+}
+
+.grid a:hover {
+    color: #465fff !important;
+}
+
+.dark .grid a,
+.dark .grid a:link,
+.dark .grid a:visited,
+.dark .grid a:active {
+    color: #e5e7eb !important;
+}
+
+.dark .grid a:hover {
+    color: #818cf8 !important;
 }
 
 /* ===== Header Styles ===== */
@@ -1264,7 +1357,8 @@ td > input.date + a:hover::before {
     color: #818cf8;
 }
 
-.dark .menu-item-active svg {
+.dark .menu-item-active svg,
+.dark .menu-item-split.menu-item-active svg {
     color: #818cf8;
     stroke: #818cf8;
 }
@@ -1273,23 +1367,36 @@ td > input.date + a:hover::before {
     color: #d1d5db;
 }
 
-.dark .menu-item-inactive:hover {
+.dark .menu-item-inactive:hover,
+.dark .menu-item-split.menu-item-inactive:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+/* Dark mode split menu */
+.dark .menu-item-split .menu-item-link {
+    color: inherit;
+}
+
+.dark .menu-item-split .menu-item-toggle {
+    color: inherit;
+}
+
 .dark .menu-item-icon-inactive,
-.dark .menu-item-inactive svg:not(.menu-item-arrow) {
+.dark .menu-item-inactive svg:not(.menu-item-arrow),
+.dark .menu-item-split.menu-item-inactive svg:not(.menu-item-arrow) {
     color: #9ca3af !important;
     stroke: #9ca3af !important;
 }
 
 .dark .menu-item-inactive:hover .menu-item-icon-inactive,
-.dark .menu-item-inactive:hover svg:not(.menu-item-arrow) {
+.dark .menu-item-inactive:hover svg:not(.menu-item-arrow),
+.dark .menu-item-split.menu-item-inactive:hover svg:not(.menu-item-arrow) {
     color: #d1d5db !important;
     stroke: #d1d5db !important;
 }
 
-.dark .menu-item-active svg:not(.menu-item-arrow) {
+.dark .menu-item-active svg:not(.menu-item-arrow),
+.dark .menu-item-split.menu-item-active svg:not(.menu-item-arrow) {
     color: #818cf8 !important;
     stroke: #818cf8 !important;
 }
@@ -1344,17 +1451,20 @@ td > input.date + a:hover::before {
 /* Dark mode menu item colors - override visited purple */
 .dark .menu-item-inactive,
 .dark .menu-item-inactive:link,
-.dark .menu-item-inactive:visited {
+.dark .menu-item-inactive:visited,
+.dark .menu-item-split.menu-item-inactive {
     color: #d1d5db !important;
 }
 
-.dark .menu-item-inactive:hover {
+.dark .menu-item-inactive:hover,
+.dark .menu-item-split.menu-item-inactive:hover {
     color: #f3f4f6 !important;
 }
 
 .dark .menu-item-active,
 .dark .menu-item-active:link,
-.dark .menu-item-active:visited {
+.dark .menu-item-active:visited,
+.dark .menu-item-split.menu-item-active {
     color: #818cf8 !important;
 }
 

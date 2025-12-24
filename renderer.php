@@ -135,6 +135,8 @@
 					theme: {
 						extend: {
 							colors: {
+								primary: '#465fff',
+								'primary-light': '#818cf8',
 								brand: {
 									50: '#eef2ff',
 									100: '#e0e7ff',
@@ -295,34 +297,52 @@
 						}
 						
 						// Determine initial expanded state
-						$initially_expanded = ($active_app_key == $app_key) ? 'true' : 'false';
+						// Expand if: submenu item is active OR we're on the main page of this module
+						$initially_expanded = ($active_app_key == $app_key || $is_active) ? 'true' : 'false';
 						
 						echo "<!-- Menu Item ".$acc[0]." -->\n";
-						echo "<li x-data=\"{ expanded: $initially_expanded }\" x-init=\"if($initially_expanded) selected = '$app_key'\">\n";
+						// Initialize selected if menu should be expanded
+						$init_selected = ($initially_expanded == 'true') ? "selected = '$app_key';" : '';
+						echo "<li x-data=\"{ expanded: $initially_expanded }\" x-init=\"$init_selected\">\n";
 						
 						if ($has_modules) {
-							// Expandable menu item with dropdown
-							echo "<a href=\"#\" @click.prevent=\"selected = (selected === '$app_key' ? '':'$app_key')\" class=\"menu-item group\" :class=\"(selected === '$app_key') ? 'menu-item-active' : 'menu-item-inactive'\">\n";
+							// Expandable menu item with dropdown - split click behavior
+							// Container div for the menu item - looks like single item but has split click areas
+							// Active when: dropdown is expanded OR current page is this module's main page
+							$is_active_str = $is_active ? 'true' : 'false';
+							echo "<div class=\"menu-item-split group\" :class=\"(selected === '$app_key' || $is_active_str) ? 'menu-item-active' : 'menu-item-inactive'\">\n";
+							
+							// Left part: Icon + Text - navigates to module main page
+							echo "<a href=\"$path_to_root/index.php?application=".$app->id."\"$acc[1] class=\"menu-item-link\">\n";
+							// Icon - use appropriate icon for each app
+							echo $this->get_app_icon($app->id, $icon_class);
+							echo "<span class=\"menu-item-text\" :class=\"sidebarToggle ? 'xl:hidden' : ''\">\n";
+							echo $acc[0]."\n";
+							echo "</span>\n";
+							echo "</a>\n";
+							
+							// Right part: Arrow - toggles dropdown (invisible split, same hover as parent)
+							echo "<button @click.prevent=\"selected = (selected === '$app_key' ? '':'$app_key')\" class=\"menu-item-toggle\" :class=\"sidebarToggle ? 'xl:hidden' : ''\">\n";
+							// Arrow rotates when selected matches app_key (not based on is_active_str to allow proper toggling)
+							echo "<svg class=\"menu-item-arrow transition-transform duration-200\" :class=\"selected === '$app_key' ? 'rotate-180' : ''\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+							echo "<path d=\"M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n";
+							echo "</svg>\n";
+							echo "</button>\n";
+							
+							echo "</div>\n";
 						} else {
 							// Simple menu item (no dropdown)
 							echo "<a href=\"$path_to_root/index.php?application=".$app->id."\"$acc[1] class=\"menu-item group ".($is_active ? 'menu-item-active' : 'menu-item-inactive')."\">\n";
+							
+							// Icon - use appropriate icon for each app
+							echo $this->get_app_icon($app->id, $icon_class);
+							
+							echo "<span class=\"menu-item-text\" :class=\"sidebarToggle ? 'xl:hidden' : ''\">\n";
+							echo $acc[0]."\n";
+							echo "</span>\n";
+							
+							echo "</a>\n";
 						}
-						
-						// Icon - use appropriate icon for each app
-						echo $this->get_app_icon($app->id, $icon_class);
-						
-						echo "<span class=\"menu-item-text\" :class=\"sidebarToggle ? 'xl:hidden' : ''\">\n";
-						echo $acc[0]."\n";
-						echo "</span>\n";
-						
-						if ($has_modules) {
-							// Arrow for expandable items
-							echo "<svg class=\"menu-item-arrow\" :class=\"[(selected === '$app_key') ? 'menu-item-arrow-active' : 'menu-item-arrow-inactive', sidebarToggle ? 'xl:hidden' : '' ]\" width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n";
-							echo "<path d=\"M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path>\n";
-							echo "</svg>\n";
-						}
-						
-						echo "</a>\n";
 						
 						// Dropdown Menu for modules and functions
 						if ($has_modules) {
@@ -330,10 +350,20 @@
 							echo "<div class=\"translate transform overflow-hidden\" :class=\"(selected === '$app_key') ? 'block' :'hidden'\">\n";
 							echo "<ul :class=\"sidebarToggle ? 'xl:hidden' : 'flex'\" class=\"menu-dropdown mt-2 flex flex-col gap-1 pl-9\">\n";
 							
+							$module_index = 0;
 							foreach ($app->modules as $module)
 							{
 								if ($_SESSION["wa_current_user"]->check_module_access($module))
 								{
+									// Show module group header (e.g., "Transactions", "Inquiries and Reports", "Maintenance")
+									if (!empty($module->name)) {
+										$mt_class = $module_index > 0 ? 'mt-4' : '';
+										echo "<li class=\"menu-module-header $mt_class\">\n";
+										echo "<span class=\"text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 px-1 py-2 block\">".$module->name."</span>\n";
+										echo "</li>\n";
+									}
+									$module_index++;
+									
 									// Render left app functions (lappfunctions)
 									foreach ($module->lappfunctions as $appfunction)
 									{
@@ -605,6 +635,78 @@
 			echo "<script src='$theme_path/vendor/alpinejs/alpine.min.js'></script>\n";
 		}
 
+		// Get shortcuts for the current application
+		function get_app_shortcuts($app_id) 
+		{
+			$shortcuts = array(
+				'orders' => array(
+					array('link' => 'sales/sales_order_entry.php?NewOrder=Yes', 'label' => _('Sales Order')),
+					array('link' => 'sales/sales_order_entry.php?NewInvoice=0', 'label' => _('Direct Invoice')),
+					array('link' => 'sales/customer_payments.php?', 'label' => _('Payments')),
+					array('link' => 'sales/inquiry/sales_orders_view.php?', 'label' => _('Sales Order Inquiry')),
+					array('link' => 'sales/inquiry/customer_inquiry.php?', 'label' => _('Transactions')),
+					array('link' => 'sales/manage/customers.php?', 'label' => _('Customers')),
+					array('link' => 'sales/manage/customer_branches.php?', 'label' => _('Branch')),
+					array('link' => 'reporting/reports_main.php?Class=0', 'label' => _('Reports and Analysis')),
+				),
+				'AP' => array(
+					array('link' => 'purchasing/po_entry_items.php?NewOrder=0', 'label' => _('Purchase Order')),
+					array('link' => 'purchasing/inquiry/po_search.php?', 'label' => _('Receive')),
+					array('link' => 'purchasing/supplier_invoice.php?New=1', 'label' => _('Supplier Invoice')),
+					array('link' => 'purchasing/supplier_payment.php?', 'label' => _('Payments')),
+					array('link' => 'purchasing/inquiry/supplier_inquiry.php?', 'label' => _('Transactions')),
+					array('link' => 'purchasing/manage/suppliers.php?', 'label' => _('Suppliers')),
+					array('link' => 'reporting/reports_main.php?Class=1', 'label' => _('Reports and Analysis')),
+				),
+				'stock' => array(
+					array('link' => 'inventory/adjustments.php?NewAdjustment=1', 'label' => _('Inventory Adjustments')),
+					array('link' => 'inventory/inquiry/stock_movements.php?', 'label' => _('Inventory Movements')),
+					array('link' => 'inventory/manage/items.php?', 'label' => _('Items')),
+					array('link' => 'inventory/prices.php?', 'label' => _('Sales Pricing')),
+					array('link' => 'reporting/reports_main.php?Class=2', 'label' => _('Reports and Analysis')),
+				),
+				'manuf' => array(
+					array('link' => 'manufacturing/work_order_entry.php?', 'label' => _('Work Order Entry')),
+					array('link' => 'manufacturing/search_work_orders.php?outstanding_only=1', 'label' => _('Outstanding Work Orders')),
+					array('link' => 'manufacturing/search_work_orders.php?', 'label' => _('Work Order Inquiry')),
+					array('link' => 'manufacturing/manage/bom_edit.php?', 'label' => _('Bills Of Material')),
+					array('link' => 'reporting/reports_main.php?Class=3', 'label' => _('Reports and Analysis')),
+				),
+				'assets' => array(
+					array('link' => 'purchasing/po_entry_items.php?NewInvoice=Yes&FixedAsset=1', 'label' => _('Fixed Assets Purchase')),
+					array('link' => 'fixed_assets/inquiry/stock_inquiry.php?', 'label' => _('Fixed Assets Inquiry')),
+					array('link' => 'inventory/manage/items.php?FixedAsset=1', 'label' => _('Fixed Assets')),
+					array('link' => 'fixed_assets/process_depreciation.php?', 'label' => _('Depreciations')),
+					array('link' => 'reporting/reports_main.php?Class=7', 'label' => _('Reports and Analysis')),
+				),
+				'proj' => array(
+					array('link' => 'dimensions/dimension_entry.php?', 'label' => _('Dimension Entry')),
+					array('link' => 'dimensions/inquiry/search_dimensions.php?', 'label' => _('Dimension Inquiry')),
+					array('link' => 'reporting/reports_main.php?Class=4', 'label' => _('Reports and Analysis')),
+				),
+				'GL' => array(
+					array('link' => 'gl/gl_bank.php?NewPayment=Yes', 'label' => _('Payments')),
+					array('link' => 'gl/gl_bank.php?NewDeposit=Yes', 'label' => _('Deposits')),
+					array('link' => 'gl/gl_journal.php?NewJournal=Yes', 'label' => _('Journal Entry')),
+					array('link' => 'gl/inquiry/bank_inquiry.php?', 'label' => _('Bank Account Inquiry')),
+					array('link' => 'gl/inquiry/gl_trial_balance.php?', 'label' => _('Trial Balance')),
+					array('link' => 'gl/manage/exchange_rates.php?', 'label' => _('Exchange Rates')),
+					array('link' => 'gl/manage/gl_accounts.php?', 'label' => _('GL Accounts')),
+					array('link' => 'reporting/reports_main.php?Class=6', 'label' => _('Reports and Analysis')),
+				),
+				'system' => array(
+					array('link' => 'admin/company_preferences.php?', 'label' => _('Company Setup')),
+					array('link' => 'admin/gl_setup.php?', 'label' => _('General GL')),
+					array('link' => 'taxes/tax_types.php?', 'label' => _('Taxes')),
+					array('link' => 'taxes/tax_groups.php?', 'label' => _('Tax Groups')),
+					array('link' => 'admin/forms_setup.php?', 'label' => _('Forms Setup')),
+					array('link' => 'admin/backups.php?', 'label' => _('Backup and Restore')),
+				),
+			);
+			
+			return isset($shortcuts[$app_id]) ? $shortcuts[$app_id] : array();
+		}
+		
 		function display_applications(&$waapp)
 		{
 			global $path_to_root;
@@ -617,6 +719,31 @@
 			{
 				$selected_app->render_index();
 				return;
+			}
+
+			// Page title - strip keyboard shortcut marker (&) from name
+			$page_title = str_replace('&', '', $selected_app->name);
+			echo "<div class=\"mb-6\">\n";
+			echo "<h1 class=\"text-2xl font-bold text-gray-800 dark:text-white/90\">".$page_title."</h1>\n";
+			echo "<p class=\"mt-1 text-sm text-gray-500 dark:text-gray-400\">"._("Select a function from the menu below or use the quick links")."</p>\n";
+			echo "</div>\n";
+			
+			// Display shortcuts bar
+			$shortcuts = $this->get_app_shortcuts($selected_app->id);
+			if (!empty($shortcuts)) {
+				echo "<div class=\"mb-6 flex flex-wrap gap-2 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-[#344054] dark:bg-[#1d2939]\">\n";
+				foreach ($shortcuts as $shortcut) {
+					echo "<a href=\"$path_to_root/".$shortcut['link']."\" class=\"inline-flex items-center rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 transition hover:bg-primary hover:text-white dark:bg-[#344054] dark:text-gray-300 dark:hover:bg-primary dark:hover:text-white\">\n";
+					echo $shortcut['label'];
+					echo "</a>\n";
+				}
+				// Add Dashboard link
+				$sel_app = $_SESSION['sel_app'];
+				echo "<a href=\"$path_to_root/admin/dashboard.php?sel_app=$sel_app\" class=\"inline-flex items-center rounded-md bg-primary/10 px-3 py-2 text-sm font-medium text-primary transition hover:bg-primary hover:text-white dark:bg-primary/20 dark:text-primary-light dark:hover:bg-primary dark:hover:text-white\">\n";
+				echo "<svg class=\"mr-1.5 h-4 w-4\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6\"></path></svg>\n";
+				echo _('Dashboard');
+				echo "</a>\n";
+				echo "</div>\n";
 			}
 
 			// TailAdmin-style module cards
