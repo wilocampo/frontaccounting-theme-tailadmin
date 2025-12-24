@@ -608,12 +608,12 @@
 
 			if ($no_menu == false)
 			{
-				// Bottom status bar (keyboard shortcuts only)
+				// Bottom status bar (keyboard shortcuts only) - styled as card
 				$phelp = implode('; ', $Pagehelp);
 				$Ajax->addUpdate(true, 'hotkeyshelp', $phelp);
 				
-				echo "<div class=\"flex items-center justify-center border-t border-gray-200 bg-white px-6 py-3 dark:border-[#344054] dark:bg-[#1d2939]\">\n";
-				echo "<div id='hotkeyshelp' class=\"text-theme-xs text-gray-500 dark:text-gray-400\">".$phelp."</div>\n";
+				echo "<div class=\"mt-6 rounded-lg border border-gray-200 bg-white px-6 py-3 shadow-sm dark:border-[#344054] dark:bg-[#1d2939]\">\n";
+				echo "<div id='hotkeyshelp' class=\"text-center text-theme-xs text-gray-500 dark:text-gray-400\">".$phelp."</div>\n";
 				echo "</div>\n";
 			}
 			
