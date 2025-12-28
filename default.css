@@ -1088,21 +1088,21 @@ td:has(> input.date) {
 }
 
 input.date {
-    padding-right: 3rem !important;
+    padding-right: 2.5rem !important;
     min-width: 140px;
 }
 
 /* Hide the old calendar image and style the link as icon container */
 td > input.date + a {
     position: absolute;
-    right: 12px;
-    top: 0;
-    bottom: 0;
+    right: 1.375rem;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
     width: 20px;
-    height: 100%;
+    height: 20px;
     pointer-events: auto;
     z-index: 1;
 }
@@ -1160,6 +1160,9 @@ td > input.date + a:hover::before {
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     border: 1px solid #e5e7eb;
+    max-width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+    overflow: auto;
 }
 
 #CC table {
